@@ -1,0 +1,339 @@
+
+	<title>Coffee</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<script type="text/javascript">
+function date_time(id){
+          date = new Date;
+          year = date.getFullYear();
+          month = date.getMonth();
+          months = new Array('JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEPT', 'OCT', 'NOV', 'DEC');
+          d = date.getDate();
+          day = date.getDay();
+          days = new Array('SUNDAY', 'MONDAY', 'TUESDAY', 'WEDNESDAY', 'THURSDAY', 'FRIDAY', 'SATURDAY');
+          h = date.getHours();
+          if(h<10)
+          {
+                  h = "0"+h;
+          }
+          m = date.getMinutes();
+          if(m<10)
+          {
+                  m = "0"+m;
+          }
+          s = date.getSeconds();
+          if(s<10)
+          {
+                  s = "0"+s;
+          }
+          result = ''+days[day]+'<p>'+months[month]+' '+d+', '+year+'</p><p>' +h+':'+m+':'+s + "</p>";
+          document.getElementById(id).innerHTML = result;
+          setTimeout('date_time("'+id+'");','1000');
+          return true;
+  };
+$(document).ready(function(){
+  $('.dashboard.clearfix.home').addClass('openpage');
+  
+  function showDashBoard(){
+    $('.dashboard').show();
+    }
+ 
+  function fadeDashBoard(){
+      $('.dashboard').hide();
+    
+  }
+  $('.big, .small.news-thumb').each(function(){
+    var $this= $(this),
+        page = $this.data('page');
+    $this.on('click',function(){
+      $('.page.'+page).addClass('openpage');
+      fadeDashBoard();
+    })
+  })
+  $('#workstate').click(function(){
+    var present = $('.dashboard.clearfix.present').hasClass('openpage');
+    var coffee = $('.dashboard.clearfix.coffee').hasClass('openpage');
+    var home = $('.dashboard.clearfix.home').hasClass('openpage');
+    var $this= $(this),
+        page = $this.data('page');
+       if (home){
+           $('.dashboard.clearfix.home').addClass('slidePageLeft').one('webkitAnimationEnd oanimationend msAnimationEnd animationend', function(e) {
+                $('.dashboard.clearfix.home').removeClass('slidePageLeft').removeClass('openpage');
+              });
+        };
+
+        if (present){
+           $('.dashboard.clearfix.present').addClass('slidePageLeft').one('webkitAnimationEnd oanimationend msAnimationEnd animationend', function(e) {
+                $('.dashboard.clearfix.present').removeClass('slidePageLeft').removeClass('openpage');
+              });
+        };
+
+       if (coffee){
+          $('.dashboard.clearfix.coffee').addClass('slidePageLeft').one('webkitAnimationEnd oanimationend msAnimationEnd animationend', function(e) {
+                  $('.dashboard.clearfix.coffee').removeClass('slidePageLeft').removeClass('openpage');
+                });
+        };
+        $('.dashboard.clearfix.work').addClass('openpage');
+  })
+
+  $('#homestate').click(function(){
+    window.onload = date_time('date_time')
+    var present = $('.dashboard.clearfix.present').hasClass('openpage');
+    var work = $('.dashboard.clearfix.work').hasClass('openpage');
+    var coffee = $('.dashboard.clearfix.coffee').hasClass('openpage');
+    var $this= $(this),
+        page = $this.data('page');
+     if (present){
+           $('.dashboard.clearfix.present').addClass('slidePageLeft').one('webkitAnimationEnd oanimationend msAnimationEnd animationend', function(e) {
+                $('.dashboard.clearfix.present').removeClass('slidePageLeft').removeClass('openpage');
+              });
+        };
+
+        if (work){
+          $('.dashboard.clearfix.work').addClass('slidePageLeft').one('webkitAnimationEnd oanimationend msAnimationEnd animationend', function(e) {
+                  $('.dashboard.clearfix.work').removeClass('slidePageLeft').removeClass('openpage');
+                });
+        };
+      if (coffee){
+          $('.dashboard.clearfix.coffee').addClass('slidePageLeft').one('webkitAnimationEnd oanimationend msAnimationEnd animationend', function(e) {
+                  $('.dashboard.clearfix.coffee').removeClass('slidePageLeft').removeClass('openpage');
+                });
+        };
+     $('.dashboard.clearfix.home').addClass('openpage');
+
+  })
+
+  $('#coffeestate').click(function(){
+    var present = $('.dashboard.clearfix.present').hasClass('openpage');
+    var work = $('.dashboard.clearfix.work').hasClass('openpage');
+    var home = $('.dashboard.clearfix.home').hasClass('openpage');
+
+    var $this= $(this),
+        page = $this.data('page');
+       if (present){
+           $('.dashboard.clearfix.present').addClass('slidePageLeft').one('webkitAnimationEnd oanimationend msAnimationEnd animationend', function(e) {
+                $('.dashboard.clearfix.present').removeClass('slidePageLeft').removeClass('openpage');
+              });
+        };
+        if (home){
+           $('.dashboard.clearfix.home').addClass('slidePageLeft').one('webkitAnimationEnd oanimationend msAnimationEnd animationend', function(e) {
+                $('.dashboard.clearfix.home').removeClass('slidePageLeft').removeClass('openpage');
+              });
+        };
+
+        if (work){
+          $('.dashboard.clearfix.work').addClass('slidePageLeft').one('webkitAnimationEnd oanimationend msAnimationEnd animationend', function(e) {
+                  $('.dashboard.clearfix.work').removeClass('slidePageLeft').removeClass('openpage');
+                });
+        };
+
+        $('.dashboard.clearfix.coffee').addClass('openpage');
+  })
+
+  $('#presentstate').click(function(){
+    var home = $('.dashboard.clearfix.home').hasClass('openpage');
+    var coffee = $('.dashboard.clearfix.coffee').hasClass('openpage');
+    var work = $('.dashboard.clearfix.work').hasClass('openpage');
+    var $this= $(this),
+        page = $this.data('page');
+        if (home){
+           $('.dashboard.clearfix.home').addClass('slidePageLeft').one('webkitAnimationEnd oanimationend msAnimationEnd animationend', function(e) {
+                $('.dashboard.clearfix.home').removeClass('slidePageLeft').removeClass('openpage');
+              });
+        };
+        if (coffee){
+          $('.dashboard.clearfix.coffee').addClass('slidePageLeft').one('webkitAnimationEnd oanimationend msAnimationEnd animationend', function(e) {
+                  $('.dashboard.clearfix.coffee').removeClass('slidePageLeft').removeClass('openpage');
+                });
+        };
+
+        if (work){
+          $('.dashboard.clearfix.work').addClass('slidePageLeft').one('webkitAnimationEnd oanimationend msAnimationEnd animationend', function(e) {
+                  $('.page.work').removeClass('slidePageLeft').removeClass('openpage');
+                });
+        };
+        $('.dashboard.clearfix.present').addClass('openpage');
+  })
+
+  $('.close-button').click(function(){
+    $(this).parent().addClass('slidePageLeft').one('webkitAnimationEnd oanimationend msAnimationEnd animationend', function(e) {
+        $(this).removeClass('slidePageLeft').removeClass('openpage');
+      })
+    showDashBoard();
+  })
+
+    $('.home.small-icon').hover(function(){
+      $(this).animate({width:"50px"}, 100)
+      }, function(){
+      $(this).animate({width:"25px"}, 100)
+    });
+
+
+  //  $('.sidebar1').mouseleave(function() {
+  //   $(".home.small-icon").animate({width:"15px"}, 100);
+  // });
+});
+
+</script>
+  <head>
+    
+</header>
+<body>
+
+  <!--===============================Start Demo====================================================-->
+<div class="wrapper">
+<div class ="state-menu" style = "float:right; margin-top:-50px; padding-right:10px; opacity:0.6">
+          <p style = "color:#f9f8e4; font-family:Caviar"> 
+            <span id = "homestate" data-page = "home" > HOME </span>   |  |   <span id = "coffeestate" data-page = "coffee"> COFFEE </span>|
+             <span id = "workstate" data-page="work">WORK </span>| <span id = "presentstate" data-page="present">PRESENT</span></p>
+  </div>
+  <div class = "page news">
+    <h2 class="page-title" style ="font-size:40px;float:left; text-align:justify;margin-left:20px; width: 80px; line-height:36px">NEW YORK TIMES</h2>
+    <ul>
+      <li><a class = "link" href = "http://www.nytimes.com/2013/05/01/business/global/chinese-way-of-doing-business-in-cash-we-trust.html?hp&_r=0" target = "_blank">Chinese Way of Doing Business: In Cash We Trust</a><p><span class = "info">By DAVID BARBOZA. April 30, 2013</span></p><p><span class = "blurb"><img src ="http://graphics8.nytimes.com/images/2013/05/01/business/YUAN/YUAN-articleLarge.jpg" width = "100px" height = "100px" style = "float:left; margin-right:10px"/>Many experts say mutual wariness between the government and its citizens means the country still prefers to pay for things the old-fashioned way.</span></p></li>
+
+      <li><a class = "link" href = "http://www.nytimes.com/2013/05/01/nyregion/justice-denied-for-misdemeanor-cases-trials-are-elusive.html?hp" target = "_blank">Even in Minor Cases, Trial is Uncertain</a><p><span class = "info">By WILLIAM GLABERSON. April 30, 2013</span></p><p><span class = "blurb"><img src ="http://graphics8.nytimes.com/packages/images/multimedia/bundles/projects/2013/BronxCourts/bronxcourts_part4_lede.jpg" width = "100px" height = "100px" style = "float:left; margin-right:10px"/>Those accused of minor offenses in the Bronx face such hardship in pursuit of a hearing that it’s often easiest to accept a plea deal.</span></p></li>
+    </ul>
+    <div class="close-button">x</div>
+  </div>
+
+  <div class="page todos">
+    <h2 class="page-title" style ="font-size:40px;float:left; margin-left:20px;">GMAIL</h2>
+    <ul contenteditable>
+      <li><strong>From:</strong> Jason Lipshin<span class="delete-button">reply</span><p style="font-size:15px; margin-left:20px;word-wrap:break-word">guys guess what I know how arduinos work...not as useless as you thought :D </p></li>
+      <li><strong>From:</strong> MIT Alert<span class="delete-button">reply</span><p style="font-size:15px; margin-left:20px;word-wrap:break-word">Yet another suspicious package discovered in Kendall. CONSTANT VIGILANCE</p></li>
+      <li><strong>From:</strong> Moe Amaya<span class="delete-button">reply</span><p style="font-size:15px; margin-left:20px;word-wrap:break-word">So I finished all 10 drawings AND the renderings and made the table. Thx for going to the meetings!</p></li>
+      <li><strong>From:</strong> Elina Hu<span class="delete-button">reply</span><p style="font-size:15px; margin-left:20px;word-wrap:break-word"> img "cat photos" /img </p></li>
+      <li><strong>From:</strong> Ring Comm<span class="delete-button">reply</span><p style="font-size:15px; margin-left:20px;word-wrap:break-word">YOU'RE GETTING YOUR RING TOMORROW! </p></li>
+    </ul>
+    <div class="close-button">x</div>
+  </div>
+
+  <div class="page cal">
+    <h2 class="page-title" style ="font-size:40px;float:left; margin-left:20px;">CALENDAR</h2>
+    <table>
+      <tr>
+        <td>SUN</td>
+        <td>MON</td>
+        <td>TUES</td>
+        <td>WED</td>
+        <td>THUR</td>
+        <td>FRI</td>
+        <td>SAT</td>
+      </tr>
+      <tr style = "height:100px">
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr style = "height:100px">
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr style = "height:100px">
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+    </table>   
+    <div class="close-button">x</div>
+  </div>
+
+  <!-- Home Start -->
+  <div class="dashboard clearfix home">
+    <span id = "date_time">weeeeeaa</span>
+    <script type="text/javascript">window.onload = date_time('date_time')
+    </script>
+
+  </div>
+  <!-- Home End -->
+
+  <!-- Coffee Start -->
+  <div id = "coffee"> 
+
+  <div class="dashboard clearfix coffee">
+      <div class="col1 clearfix" style = "width:450px; margin-left:120px">
+        <h1 id = "welcome">WELCOME</h1>
+        <div class="big todos-thumb" data-page="food" style = "background-image:url('images/food.jpg'); background-size: 100%; float:left">
+          <p style ="margin-top:15px; padding:0; margin-left:-32px; vertical-align:center;">FOOD & DRINK
+          </p>
+        </div>
+        <div class="small news-thumb" data-page="news" style="float:left; margin-left:30px; margin-right:10px;padding:0; margin-top:5px; background-image:url('images/news.jpg'); background-position:center">
+          <p style ="margin-top:30px">NEWS</p>
+        </div>
+        <div class="small news-thumb" data-page= "todos" style="float:left; padding:0; margin-top:5px; background-image:url('images/browse.jpg'); background-position:center">
+          <p style="margin-top:30px;font-size:40px;">MAIL
+            <span class="news-thumb-span" >6 unread</span></p>
+        </div>
+        <!-- <div class="big todos-thumb" data-page="random-page">
+          <p>Mail
+            <span class="todos-thumb-span" >You have 6 unread messages.</span>
+          </p>
+        </div> -->
+    </div>
+
+    <div class="col1 clearfix" style ="margin-left:-15px">
+      <div class="small lock-thumb" onclick ="$('#assistance').fadeIn(500).delay(1400).fadeOut(500)">
+          <p style="font-size:80px; margin-top:10px">?</p>
+        </div>
+        <div class="small news-thumb" data-page= "cal" style = " margin-top:7px;background-image:url('images/cal.jpg'); background-position:center">
+          <p style="margin-top:30px;font-size:40px;">CAL</p>
+        </div>
+    </div>
+
+    </div>
+  </div>  
+  <!-- Coffee End -->
+
+  <div class ="notification" id = "assistance">Maria will be right with you!</div>
+
+  <!-- Work Start -->
+  <div class="dashboard clearfix work" style ="margin: 0; padding: 0; width: inherit">
+      <div class = "sidebar1">
+         <div class = "home small-icon" style = "background-image:url('images/cloud.png'); background-size:60%; background-position:50% 50%; padding:10px; background-repeat:no-repeat">
+        </div>
+
+        <div class = "home small-icon" style = "background-image:url('images/cal.png'); background-size:60%; background-position:50% 50%; padding:10px; background-repeat:no-repeat">
+        </div>
+
+        <div class = "home small-icon" style = "background-image:url('images/mail.png'); background-size:60%; background-position:50% 50%; padding:10px; background-repeat:no-repeat">
+        </div>
+        <div class = "home small-icon" style = "background-image:url('images/git.png'); background-size:60%; background-position:50% 50%; padding:10px; background-repeat:no-repeat">
+        </div>
+
+        <div class = "home small-icon" style = "background-image:url('images/chat.png'); background-size:60%; background-position:50% 50%; padding:10px; background-repeat:no-repeat">
+        </div>
+
+        <div class = "home small-icon" style = "background-image:url('images/file.png'); background-size:60%; background-position:50% 50%; padding:10px; background-repeat:no-repeat">
+        </div>
+        <div class = "home small-icon" style = "background-image:url('images/fb.png'); background-size:40%; background-position:50% 50%; padding:10px; background-repeat:no-repeat">
+        </div>
+        
+        <div class = "home small-icon" style = "background-image:url('images/option.png'); background-size:60%; background-position:50% 50%; padding:10px; background-repeat:no-repeat">
+        </div>
+      </div>
+
+
+    
+  </div>
+
+
+  <!-- Work End -->
+  <div class="dashboard clearfix present">
+    <h2 class="page-title">Present</h2>
+  </div>
+</div>
+</body>
