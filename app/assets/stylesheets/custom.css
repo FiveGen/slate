@@ -372,14 +372,16 @@ ul{
   margin-top: -50px;
   color: #f9f8e4;
 }
-
+#docframe{
+  display: none;
+ 
+}
 /* Home State*/
 .home.sidebar{
-  margin: 0;
   margin-left: -100px;
   padding-left: 0;
   float: left;
-  margin-top: -100px;
+  margin-top: 200px;
   height: 700px;
   width: 10px;
 
@@ -405,9 +407,10 @@ ul{
     -webkit-transition: all 0.5s ease;
   }
 
-#date_time{
+#date_time, #date_time p{
   float:center;
   font-size: 40px;
+  color: #f9f8e4;
 }
 /*styling the pages*/
 .page.random-page{
@@ -477,6 +480,31 @@ ul{
     }
       .cal td{
         min-width: 100px;
+      }
+
+/* food page*/
+.page.food{
+  background:#2FB1BE;
+}
+  .page.food table{
+      margin-top: 200px;
+      margin-left: 10%;
+      width: 80%;
+    }
+      .page.food tr {
+        font-size: 24px;
+        color: #444;
+        min-width: 160px;
+        min-height: 150px;
+        margin: 10px;
+        padding-top:  50px;
+        padding-bottom: 50px;
+        background:white;
+        border: 1px solid black;
+      }
+      .food td{
+        width: 250px;
+        margin-right: 10px;
       }
 /* Mail Page*/
 .page.todos{

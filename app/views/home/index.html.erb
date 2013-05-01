@@ -2,6 +2,7 @@
 	<title>Coffee</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <script src='https://swww.tokbox.com/webrtc/v2.0/js/TB.min.js'></script>
 <script type="text/javascript">
 function date_time(id){
           date = new Date;
@@ -169,9 +170,40 @@ $(document).ready(function(){
     });
 
 
+
   //  $('.sidebar1').mouseleave(function() {
   //   $(".home.small-icon").animate({width:"15px"}, 100);
   // });
+var session;
+$('#doc').toggle(
+  function(){
+    $('#docframe').show();
+  },
+  function(){
+    $('#docframe').hide();
+  }
+  );
+
+$('#tokbox').toggle(
+    function(){// Initialize API key, session, and token...
+          // Think of a session as a room, and a token as the key to get in to the room
+          // Sessions and tokens are generated on your server and passed down to the client
+          var apiKey = "27871142";
+          var sessionId = "1_MX4yNzg3MTE0Mn4xMjcuMC4wLjF-V2VkIE1heSAwMSAwNToxNDoxMSBQRFQgMjAxM34wLjg2MjUzOTJ-";
+          var token = "T1==cGFydG5lcl9pZD0yNzg3MTE0MiZzZGtfdmVyc2lvbj10YnJ1YnktdGJyYi12MC45MS4yMDExLTAyLTE3JnNpZz03NzZiZTBhNTdjMDU5ZGU5NGU2MmUwMmY2OTY1ZmQzY2M4OWQ1YTg4OnJvbGU9cHVibGlzaGVyJnNlc3Npb25faWQ9JmNyZWF0ZV90aW1lPTEzNjc0MTA0NTEmbm9uY2U9MC43MTM3NzAzMTE2NDY5OTM5JmV4cGlyZV90aW1lPTEzNjc0OTY4ODImY29ubmVjdGlvbl9kYXRhPQ==";
+
+          // Initialize session, set up event listeners, and connect
+          session = TB.initSession(sessionId);
+          session.addEventListener('sessionConnected', sessionConnectedHandler);
+          session.connect(apiKey, token);
+          
+          function sessionConnectedHandler(event) {
+            var publisher = TB.initPublisher(apiKey, 'myPublisherDiv');
+            session.publish(publisher);
+          }},
+     function(){
+      session.disconnect();}
+);
 });
 
 </script>
@@ -182,10 +214,11 @@ $(document).ready(function(){
 
   <!--===============================Start Demo====================================================-->
 <div class="wrapper">
+      
 <div class ="state-menu" style = "float:right; margin-top:-50px; padding-right:10px; opacity:0.6">
           <p style = "color:#f9f8e4; font-family:Caviar"> 
-            <span id = "homestate" data-page = "home" > HOME </span>   |  |   <span id = "coffeestate" data-page = "coffee"> COFFEE </span>|
-             <span id = "workstate" data-page="work">WORK </span>| <span id = "presentstate" data-page="present">PRESENT</span></p>
+            <span id = "homestate" data-page = "home" > HOME </span>   |   <span id = "coffeestate" data-page = "coffee"> COFFEE </span>|
+             <span id = "workstate" data-page="work">WORK </span>| <span id = "presentstate" data-page="present">PRESENT</span> | OFF</p>
   </div>
   <div class = "page news">
     <h2 class="page-title" style ="font-size:40px;float:left; text-align:justify;margin-left:20px; width: 80px; line-height:36px">NEW YORK TIMES</h2>
@@ -197,6 +230,21 @@ $(document).ready(function(){
     <div class="close-button">x</div>
   </div>
 
+  <div class = "page food">
+    <h2 class="page-title" style ="font-size:40px;float:left; margin-left:20px; ">FOOD & DRINKS</h2>
+    <table>
+      <tr>
+        <td style = "background-image:url('images/pasta.jpg'); background-size:cover; height: 250px; width: 250px;margin-right:10px">veal rigatoni</td>
+        <td style = "margin-right:10px; background-image:url('http://aggieskitchen.com/wp-content/uploads/2009/12/HarissaStk2.jpg'); background-size:250px 250px; background-position:center">NY steak sandwich</td>
+        <td style = "margin-right:10px; opacity:0.8; background-image:url('http://marriott.typepad.com/.a/6a0105371d44b0970b0120a505a563970b-320wi'); background-size:cover; background-position: center" >marriott burger</td>
+        <td style = "margin--right:10px">acaa</td>
+        <td style = "margin-right:10px">weee</td>
+        <td style = "margin-right:10px" >waaa</td>
+      </tr>
+
+    </table>
+    <div class="close-button">x</div>
+  </div>
   <div class="page todos">
     <h2 class="page-title" style ="font-size:40px;float:left; margin-left:20px;">GMAIL</h2>
     <ul contenteditable>
@@ -254,9 +302,11 @@ $(document).ready(function(){
 
   <!-- Home Start -->
   <div class="dashboard clearfix home">
-    <span id = "date_time">weeeeeaa</span>
+  <span id = "date_time"></span>
     <script type="text/javascript">window.onload = date_time('date_time')
     </script>
+    
+    </div>
 
   </div>
   <!-- Home End -->
@@ -299,22 +349,26 @@ $(document).ready(function(){
   <!-- Coffee End -->
 
   <div class ="notification" id = "assistance">Maria will be right with you!</div>
-
+  <div id = "docframe" style = " margin-top: -600px; margin-right: 100px; height: 500px; width-40%">  
+    <iframe height="500px" align= "right" width="40%" border= "0" src="https://docs.google.com/document/d/1iNQAT7ofeCtj3o-WCQpbvYTPZZc77aEJ1_b-MhzXvSE/pub?embedded=true"></iframe>
+  </div>
   <!-- Work Start -->
-  <div class="dashboard clearfix work" style ="margin: 0; padding: 0; width: inherit">
-      <div class = "sidebar1">
-         <div class = "home small-icon" style = "background-image:url('images/cloud.png'); background-size:60%; background-position:50% 50%; padding:10px; background-repeat:no-repeat">
+  <div class="dashboard clearfix work" style ="margin-top: 0; padding: 0; width: inherit">
+   <div id="myPublisherDiv" style = "position:fixed"></div>
+   
+      <div class = "sidebar1" style ="margin-top:50px">
+         <div class = "home small-icon" id = "doc" style = "background-image:url('images/cloud.png'); background-size:60%; background-position:50% 50%; padding:10px; background-repeat:no-repeat">
         </div>
 
         <div class = "home small-icon" style = "background-image:url('images/cal.png'); background-size:60%; background-position:50% 50%; padding:10px; background-repeat:no-repeat">
         </div>
 
-        <div class = "home small-icon" style = "background-image:url('images/mail.png'); background-size:60%; background-position:50% 50%; padding:10px; background-repeat:no-repeat">
+        <div class = "home small-icon" style = "background-image:url('images/mail4.png'); background-size:60%; background-position:50% 50%; padding:10px; background-repeat:no-repeat">
         </div>
         <div class = "home small-icon" style = "background-image:url('images/git.png'); background-size:60%; background-position:50% 50%; padding:10px; background-repeat:no-repeat">
         </div>
 
-        <div class = "home small-icon" style = "background-image:url('images/chat.png'); background-size:60%; background-position:50% 50%; padding:10px; background-repeat:no-repeat">
+        <div class = "home small-icon" id = "tokbox" style = "background-image:url('images/chat.png'); background-size:60%; background-position:50% 50%; padding:10px; background-repeat:no-repeat">
         </div>
 
         <div class = "home small-icon" style = "background-image:url('images/file.png'); background-size:60%; background-position:50% 50%; padding:10px; background-repeat:no-repeat">
